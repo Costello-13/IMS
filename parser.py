@@ -3,11 +3,11 @@ import requests, pprint, sched, time, pymongo, redis, json
 from bs4 import BeautifulSoup
 import pandas as pd
 
-mongoclient = pymongo.MongoClient("mongodb://localhost:27017/")
+mongoclient = pymongo.MongoClient("mongodb://localhost:27017/") ### Werkt niet in Docker --> in pythonfile veranderd naar "mongodb://172.17.0.3:27017/" voor connectie in Docker
 mongodb = mongoclient["btc_database"]
 mongocol = mongodb["btc_scraper"]
 
-connection = redis.StrictRedis(host="localhost", port=6379, db=0)
+connection = redis.StrictRedis(host="localhost", port=6379, db=0) #"localhost" werkt niet in Docker --> veranderd naar "redis"
 
 s = sched.scheduler(time.time, time.sleep)
 
